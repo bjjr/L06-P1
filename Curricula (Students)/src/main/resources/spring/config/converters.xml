@@ -18,7 +18,10 @@
 	">
 
 	<util:list id="converters">
-		<!-- TODO: List your converters here -->
+		<bean class="converters.CurriculumToStringConverter" />
+		<bean class="converters.CustomerToStringConverter" />
+		<bean class="converters.StringToCurriculumConverter" />
+		<bean class="converters.StringToCustomerConverter" />
 	</util:list>
 	
 </beans>

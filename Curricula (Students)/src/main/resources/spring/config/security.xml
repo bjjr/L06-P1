@@ -38,6 +38,7 @@
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" />
 		
 		<!-- TODO: configure your URL access control here -->
+		<security:intercept-url pattern="/curriculum/customer/**" access="hasRole('CUSTOMER')" />
 						
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

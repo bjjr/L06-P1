@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2016 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="ffbc4675f864e0e9aab8bdf7a0437010" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="customer2" />
+		<property name="password" value="5ce4d191fd14ac85a1469fb8c29b7a7b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+		
+	<!-- Customers -->
+	
+	<bean id="customer1" class="domain.Customer">
+		<property name="name" value="Customer-1" />
+		<property name="email" value="customer-1@mail.com" />
+		<property name="phone" value="customer-1-phone" />
+		<property name="address" value="Customer-1 address" />
+		<property name="userAccount" ref="userAccount2" />
+		<property name="curricula">
+			<list>
+				<ref bean="curriculum1" />
+				<ref bean="curriculum2" />
+				<ref bean="curriculum3" />				
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customer2" class="domain.Customer">
+		<property name="name" value="Customer-2" />
+		<property name="email" value="customer-2@mail.com" />
+		<property name="phone" value="customer-2-phone" />
+		<property name="address" value="Customer-2 address" />
+		<property name="userAccount" ref="userAccount3" />
+		<property name="curricula">
+			<list>
+				<ref bean="curriculum4" />
+				<ref bean="curriculum5" />				
+			</list>
+		</property>
+	</bean>		
+	
+	<!-- Curricula -->	
+			
+	<bean id="curriculum1" class="domain.Curriculum">
+		<property name="title" value="Curriculum 1" />
+		<property name="academicRecord" value="Academic Record 1" />
+		<property name="professionalRecord" value="Professional Record 1" />
+		<property name="hobbies" value="Hobbies 1" />			
+		<property name="customer" ref="customer1" />
+	</bean>
+	
+	<bean id="curriculum2" class="domain.Curriculum">
+		<property name="title" value="Curriculum 2" />
+		<property name="academicRecord" value="Academic Record 2" />
+		<property name="professionalRecord"><null /></property>
+		<property name="hobbies" value="Hobbies 2" />					
+		<property name="customer" ref="customer1" />
+	</bean>
+	
+	<bean id="curriculum3" class="domain.Curriculum">
+		<property name="title" value="Curriculum 3" />
+		<property name="academicRecord"><null /></property>
+		<property name="professionalRecord"><null /></property>
+		<property name="hobbies" value="Hobbies 3" />					
+		<property name="customer" ref="customer1" />
+	</bean>
+	
+	<bean id="curriculum4" class="domain.Curriculum">
+		<property name="title" value="Curriculum 4" />
+		<property name="academicRecord"><null /></property>
+		<property name="professionalRecord" value="Professional Record 4" />
+		<property name="hobbies"><null /></property>		
+		<property name="customer" ref="customer2" />
+	</bean>
+	
+	<bean id="curriculum5" class="domain.Curriculum">
+		<property name="title" value="Curriculum 5" />
+		<property name="academicRecord" value="Academic Record 5" />
+		<property name="professionalRecord" value="Professional Record 5" />
+		<property name="hobbies"><null /></property>		
+		<property name="customer" ref="customer2" />
+	</bean>
+	
+</beans>

@@ -29,7 +29,7 @@ import domain.Curriculum;
 
 
 @Controller
-@RequestMapping("curriculum/customer")
+@RequestMapping("/curriculum/customer")
 public class CurriculumCustomerController extends AbstractController {
 
 	// Services ---------------------------------------------------
@@ -90,6 +90,7 @@ public class CurriculumCustomerController extends AbstractController {
 		ModelAndView res;
 		
 		if(binding.hasErrors()) {
+			// Spring se encarga del binding
 			res = createEditModelAndView(curriculum);
 		} else {
 			try {
@@ -111,7 +112,7 @@ public class CurriculumCustomerController extends AbstractController {
 		try {
 			curriculumService.delete(curriculum);
 			res = new ModelAndView("redirect:list.do");
-		} catch (Error th) {
+		} catch (Throwable th) {
 			res = createEditModelAndView(curriculum, "curriculum.commit.error");
 		}
 		
